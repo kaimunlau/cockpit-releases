@@ -110,6 +110,15 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 - Syntax highlighting. Markdown is rendered; **Source** shows the raw text.
 - **Pop out** shows the file over the terminal.
 
+### Main branch
+
+![A repo's main branch](docs/screenshots/repo-main.png)
+
+- Click a repo's name in the sidebar to browse its main branch, no session needed.
+- Cockpit reads the first branch that exists of `origin/main`, `main`, `origin/master` and `master`. The header shows it and its commit, e.g. `origin/main @ 8e2f9a1`.
+- It shows what is committed, not the repo folder's uncommitted edits, and leaves submodules out. It never fetches: `origin/main` is as fresh as your last `git fetch`.
+- **Reload** reads the branch again. Same viewer as the Files tab: highlighted code, rendered Markdown with **Source**.
+
 ### Diff
 
 ![Diff tab](docs/screenshots/diff.png)
