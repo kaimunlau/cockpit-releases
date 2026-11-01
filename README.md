@@ -126,6 +126,7 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 - Merge or squash-merge after a confirm. Cockpit remembers your last method.
 - **Update branch** when the branch is behind.
 - Refreshes every ~30 s, or on demand.
+- A session's PR is the one whose branch matches the session's. When the names differ, Claude can link an existing PR of the repo through Cockpit's `link_pr` tool. The badge tooltip then says "linked by the agent", and the PR tab shows the PR's head branch. Claude can remove the link the same way.
 
 ### Macros
 
