@@ -124,6 +124,7 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 ![Diff tab](docs/screenshots/diff.png)
 
 - Everything since the merge-base with `origin/<base>`: commits plus uncommitted changes.
+- Once the branch has a PR, `<base>` is the branch the PR merges into, so the header's line counts and this tab match GitHub.
 - Filter by **Committed**, **Uncommitted** or a single commit.
 - **Unified** or **Side by side**. **Pop out** shows the diff over the terminal.
 
@@ -154,7 +155,7 @@ Placeholders fill themselves:
 | `{pr}` | PR number. A macro that uses it is disabled until the branch has a PR. |
 | `{pr_url}` | PR link |
 | `{branch}` | The session's branch |
-| `{base}` | The base branch |
+| `{base}` | The base branch: the PR's once the branch has one |
 
 ### Workflows
 
