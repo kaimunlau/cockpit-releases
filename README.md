@@ -194,7 +194,7 @@ Every running session's terminal in one grid. Answer prompts without switching s
 
 ![Usage meters](docs/screenshots/usage.png)
 
-The sidebar footer shows your plan's 5-hour and weekly limits: % used and reset time. The bar changes color near a limit. Numbers appear once a session has run.
+The sidebar footer shows your plan's 5-hour and weekly limits: % used and reset time. The bar changes color near a limit. Numbers appear once a session has run. When you sign in to Claude Code, or sign in as another account, they update within seconds.
 
 ### Settings
 
