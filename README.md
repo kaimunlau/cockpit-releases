@@ -75,7 +75,7 @@ One row per repo, one column per state:
 
 Cards show the branch, time in state, lines changed and the PR badge. The badge turns red on failed CI, requested changes or conflicts; click it to open the PR.
 
-- Drag a repo to reorder rows.
+- Rows are in alphabetical order. To set your own order, set **Repo order** to **Manual** in Settings, then drag a repo row.
 - **+** starts a session in that repo. **…** removes a repo with no sessions.
 - Search by title, PR link or PR number.
 
@@ -210,6 +210,7 @@ The sidebar footer shows your plan's 5-hour and weekly limits: % used and reset 
 | Keep Mac awake while sessions work (plugged in) | Off |
 | Theme | Slate (Ledger is a darker alternative) |
 | Default model | Opus |
+| Repo order | Alphabetical (**Manual** keeps the order you drag repo rows into on the Board) |
 
 The installed app also shows its version and **Check for updates**.
 
