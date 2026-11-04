@@ -250,4 +250,4 @@ Settings shows the installed version and has **Check for updates** to check righ
 
 ## License
 
-Cockpit is free for any use under the [MIT License](LICENSE). Copies must keep the copyright notice.
+Cockpit is free to use, for any purpose, under the [MIT License with the Commons Clause](LICENSE). You may not sell it. Copies must keep the copyright notice.
