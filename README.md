@@ -211,7 +211,7 @@ The sidebar footer shows your plan's 5-hour and weekly limits: % used and reset 
 | Theme | Slate (Ledger is a darker alternative) |
 | Default model | Opus |
 
-The installed app also shows its version and **Check for updates**.
+The installed app also shows its version and **Check for updates**. The last row, **License**, shows Cockpit's license and the licenses of the open-source software it includes. **Cockpit → About Cockpit** shows the version and the copyright.
 
 ---
 
