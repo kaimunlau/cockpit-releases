@@ -15,7 +15,7 @@
 - **What changed**: files, diff and the PR each session opened.
 - **Your own `claude`**: plugins, skills, hooks, MCP servers and permission prompts work as in a terminal. Cockpit never writes to `~/.claude/`.
 
-**Contents:** [Installation](#installation) · [Features](#features) · [Keyboard shortcuts](#keyboard-shortcuts) · [Updating](#updating)
+**Contents:** [Installation](#installation) · [Features](#features) · [Keyboard shortcuts](#keyboard-shortcuts) · [Updating](#updating) · [License](#license)
 
 ---
 
@@ -245,3 +245,9 @@ Settings shows the installed version and has **Check for updates** to check righ
 
 > [!NOTE]
 > The app holds no GitHub token. It reads the public feed at `https://github.com/kaimunlau/cockpit-releases/releases/latest/download/latest.json` and verifies each update's signature before installing it.
+
+---
+
+## License
+
+Cockpit is free for any use under the [MIT License](LICENSE). Copies must keep the copyright notice.
