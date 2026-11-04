@@ -108,7 +108,7 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 
 - Read-only file tree. `M` marks changed files, `A` added ones.
 - Syntax highlighting and line numbers. Markdown is rendered; **Source** shows the raw text.
-- <kbd>⌘</kbd>-click a file path in the terminal, like `src/App.tsx:120`, to open it here. The tree opens to the file, and the viewer scrolls to that line and highlights it.
+- <kbd>⌘</kbd>-click a file path in the terminal, like `src/App.tsx:120`, or click one in the chat, to open it here. The tree opens to the file, and the viewer scrolls to that line and highlights it.
 - **Pop out** shows the file over the terminal.
 
 ### Main branch
