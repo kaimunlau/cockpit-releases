@@ -111,6 +111,7 @@ Click **Chat** in the session header to read the session as a chat instead of a 
 
 - Your prompts sit on the right, with their images. Claude's replies are formatted text.
 - Each tool call is one line with its command or file and a ✓ or ✕. Click it to see its input and result. Thinking is a collapsed **Thinking** line.
+- File paths are links: click one to open it in the Files tab, at its line. <kbd>⌘</kbd>-click a **Read**, **Edit** or **Write** line to open its file.
 - A subagent's work sits under the **Agent** line that started it. Click it to open the subagent's thread.
 - `!` commands and slash commands such as `/model` show with their output. `/compact` and interruptions are divider lines.
 - While Claude works, **Claude is writing…** shows at the bottom. New replies appear within about 2 seconds, a block at a time. The chat follows them while you are at the bottom, and stays put while you scroll up to read.
