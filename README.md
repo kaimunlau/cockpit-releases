@@ -115,6 +115,7 @@ Click **Chat** in the session header to read the session as a chat instead of a 
 - `!` commands and slash commands such as `/model` show with their output. `/compact` and interruptions are divider lines.
 - While Claude works, **Claude is writing…** shows at the bottom. New replies appear within about 2 seconds, a block at a time. The chat follows them while you are at the bottom, and stays put while you scroll up to read.
 - After `/clear` the chat starts empty. After a resume it shows the resumed conversation.
+- In a folder Claude Code hasn't opened before, it first asks in the terminal whether to trust the folder. If a session stays **Starting** for a few seconds, the chat says Claude Code may be waiting for an answer, with **Open in terminal**.
 - The chat is read only: type your prompts and answer Claude's questions in the terminal. Anything the chat can't show reads **Shown in the terminal**, with **Open in terminal**.
 
 To open every new session in Chat, set **New sessions open in** to **Chat** in Settings. The Cockpit view always shows terminals.
