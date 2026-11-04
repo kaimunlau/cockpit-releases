@@ -107,7 +107,8 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 ![Files tab](docs/screenshots/files.png)
 
 - Read-only file tree. `M` marks changed files, `A` added ones.
-- Syntax highlighting. Markdown is rendered; **Source** shows the raw text.
+- Syntax highlighting and line numbers. Markdown is rendered; **Source** shows the raw text.
+- <kbd>⌘</kbd>-click a file path in the terminal, like `src/App.tsx:120`, to open it here. The tree opens to the file, and the viewer scrolls to that line and highlights it.
 - **Pop out** shows the file over the terminal.
 
 ### Main branch
@@ -224,6 +225,7 @@ The installed app also shows its version and **Check for updates**.
 | <kbd>⌘</kbd> <kbd>↩</kbd> | Run the next workflow step |
 | <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>↩</kbd> | Skip the next workflow step |
 | <kbd>⇧</kbd> <kbd>↩</kbd> | New line in the terminal, without sending |
+| <kbd>⌘</kbd>-click a file path in the terminal | Open the file in the Files tab, at its line |
 
 ---
 
