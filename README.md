@@ -228,6 +228,15 @@ The installed app also shows its version and **Check for updates**.
 
 ## Updating
 
-Cockpit checks the release feed at launch and every 6 hours. When a newer version exists, the sidebar footer shows **Update to vX.Y.Z** (in the collapsed rail, an ↑ button). Click it to download, install and relaunch. If sessions are running, Cockpit first asks, because restarting ends them; resume them afterwards from the board.
+![Update ready](docs/screenshots/update.png)
 
-Settings shows the installed version and has **Check for updates** for a manual check. Nothing is installed without a click, and the app holds no GitHub token: it reads the public feed at `https://github.com/kaimunlau/cockpit-releases/releases/latest/download/latest.json` and verifies each update's signature before installing it.
+- Cockpit checks for a new version at launch and every 6 hours.
+- It downloads and installs a new version in the background while you work. Your sessions keep running.
+- When the new version is ready, **Cockpit vX.Y.Z is ready** appears. The update applies the next time you launch Cockpit.
+- Click **Restart now** to switch at once, or **Later** to keep working. Until you restart, the sidebar shows **Restart to update** (in the collapsed rail, an ↑ button).
+- If sessions are running, Cockpit asks before it restarts, because restarting ends them. Resume them afterwards from the board.
+
+Settings shows the installed version and has **Check for updates** to check right away.
+
+> [!NOTE]
+> The app holds no GitHub token. It reads the public feed at `https://github.com/kaimunlau/cockpit-releases/releases/latest/download/latest.json` and verifies each update's signature before installing it.
