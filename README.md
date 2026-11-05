@@ -131,7 +131,7 @@ When a session is **Blocked**, its chat shows what Claude is waiting on as cards
 |---|---|---|
 | To use a tool (run a command, edit a file…) | The command or file path | **Allow**, or **Deny** with an optional message for Claude |
 | A question (`AskUserQuestion`) | Every question with its options, and **Other…** for your own words | Pick the answers, then **Submit** |
-| To approve a plan | The plan | **Send feedback** so Claude revises it, or **Approve in terminal** |
+| To approve a plan | The plan, with its images from the worktree or GitHub | **Send feedback** so Claude revises it, or **Approve in terminal** |
 | Anything else (an MCP server's form, an error) | **Answer in terminal** | **Open in terminal** |
 
 - A subagent's card names the subagent, with ⧉.
