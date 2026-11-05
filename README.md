@@ -114,7 +114,7 @@ Click **Chat** in the session header to read the session as a chat instead of a 
 - File paths are links: click one to open it in the Files tab, at its line. <kbd>⌘</kbd>-click a **Read**, **Write** or edit line (**Edit**, **MultiEdit**, **NotebookEdit**) to open its file.
 - A subagent's work sits under the **Agent** line that started it. Click it to open the subagent's thread.
 - `!` commands and slash commands such as `/model` show with their output. `/compact` and interruptions are divider lines.
-- While Claude works, **Claude is writing…** shows at the bottom. New replies appear within about 2 seconds, a block at a time. The chat follows them while you are at the bottom, and stays put while you scroll up to read.
+- New replies appear within about 2 seconds, a block at a time. The chat follows them while you are at the bottom, and stays put while you scroll up to read.
 - After `/clear` the chat starts empty. After a resume it shows the resumed conversation.
 - In a folder Claude Code hasn't opened before, it first asks in the terminal whether to trust the folder. If a session stays **Starting** for a few seconds, the chat says Claude Code may be waiting for an answer, with **Open in terminal**.
 - When Claude needs an answer, it shows as a card above the composer (see **Answer cards**). Anything the chat can't show reads **Shown in the terminal**, with **Open in terminal**.
@@ -149,7 +149,7 @@ The box under the chat sends your next prompt to Claude, as if you had typed it 
 
 - Press <kbd>↩</kbd> or click **Send**. <kbd>⇧</kbd> <kbd>↩</kbd> starts a new line. Type `/` to pick a slash command.
 - Paste, drop or click **Add files…** to attach screenshots and files, as in the first prompt.
-- It sends only when it's your turn. Otherwise a line says why: **Claude is working**, **Claude is waiting on a question above**, **Starting…** or **Session ended**. You can keep typing; the text waits for you.
+- It sends when Claude is ready for a prompt: on your turn, and also when Claude has finished but its background shells or subagents still run (a CI watcher, say). Otherwise a line says why: **Claude is working**, **Claude is waiting on a question above**, **Starting…** or **Session ended**. You can keep typing; the text waits for you.
 - Each session keeps its own draft until you send it, even when you switch views or sessions.
 - If you typed in the terminal since Claude's last turn, Send waits. Any key counts, even <kbd>↑</kbd>, <kbd>⇧</kbd> <kbd>⇥</kbd> or <kbd>esc</kbd>; keys that answer a question of Claude's don't. A live view of the terminal's last lines shows what you left there. Click **Back to terminal** to finish it there, or **Send anyway** to send the composer's text.
 - Send also waits after a command from the composer that sends no prompt, such as `/model` (its picker may still be open in the terminal) or `/cost`. The note goes once a prompt goes in, or after `/clear`.
