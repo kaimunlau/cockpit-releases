@@ -107,7 +107,7 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 ![Files tab](docs/screenshots/files.png)
 
 - Read-only file tree. `M` marks changed files, `A` added ones.
-- Syntax highlighting. Markdown is rendered, with its images from the worktree or the web; **Source** shows the raw text.
+- Syntax highlighting. Markdown is rendered, with its images from the worktree or GitHub. Images from other sites stay links, and an image that can't load shows as its text. **Source** shows the raw text.
 - **Pop out** shows the file over the terminal.
 
 ### Main branch
@@ -117,7 +117,7 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 - Click a repo's name in the sidebar to browse its main branch, no session needed.
 - Cockpit reads the first branch that exists of `origin/main`, `main`, `origin/master` and `master`. The header shows it and its commit, e.g. `origin/main @ 8e2f9a1`.
 - It shows what is committed, not the repo folder's uncommitted edits, and leaves submodules out. It never fetches: `origin/main` is as fresh as your last `git fetch`.
-- **Reload** reads the branch again. Same viewer as the Files tab: highlighted code, rendered Markdown with **Source**.
+- **Reload** reads the branch again. Same viewer as the Files tab: highlighted code, rendered Markdown with **Source**. Images there stay links.
 
 ### Diff
 
@@ -130,10 +130,10 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 
 ### Pull request
 
-![PR tab](docs/screenshots/pr.png)
+![PR tab](docs/screenshots/pr-images.png)
 
 - Description, checks, review, unresolved threads and a GitHub link, read through your `gh` login.
-- The description shows its images: pasted screenshots, images from the repo and badges, private repos included. They load through `gh` too. An image that can't load shows as a link with its text.
+- The description shows its images: pasted screenshots, images from the repo and badges, private repos included. They load through `gh` too. An image that can't load shows as its text, a link when it has a web address.
 - Merge or squash-merge after a confirm. Cockpit remembers your last method.
 - **Update branch** when the branch is behind.
 - A draft PR gets **Ready for review** in place of the merge button. One click marks it ready on GitHub.
