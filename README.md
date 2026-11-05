@@ -151,7 +151,7 @@ The box under the chat sends your next prompt to Claude, as if you had typed it 
 - Paste, drop or click **Add files…** to attach screenshots and files, as in the first prompt.
 - It sends only when it's your turn. Otherwise a line says why: **Claude is working**, **Claude is waiting on a question above**, **Starting…** or **Session ended**. You can keep typing; the text waits for you.
 - Each session keeps its own draft until you send it, even when you switch views or sessions.
-- If you typed in the terminal since Claude's last turn, Send waits. Any key counts, even <kbd>↑</kbd>, <kbd>⇧</kbd> <kbd>⇥</kbd> or <kbd>esc</kbd>; keys that answer a question of Claude's don't. A live view of the terminal's last lines shows what you left there. Click **Back to terminal** to finish it there, or **Send anyway** to send the composer's text.
+- If Claude Code's input in the terminal holds something, Send waits: text you typed there, or a picker you opened. Keys that leave the input empty don't hold it, such as <kbd>esc</kbd>, <kbd>⇧</kbd> <kbd>⇥</kbd>, or text you typed and erased. A live view of the terminal's last lines shows what you left there. Click **Back to terminal** to finish it there, or **Send anyway** to send the composer's text.
 - Send also waits after a command from the composer that sends no prompt, such as `/model` (its picker may still be open in the terminal) or `/cost`. The note goes once a prompt goes in, or after `/clear`.
 
 ### Files
