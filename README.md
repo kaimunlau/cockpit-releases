@@ -75,7 +75,7 @@ One row per repo, one column per state:
 
 Cards show the branch, time in state, lines changed and the PR badge. The badge turns red on failed CI, requested changes or conflicts; click it to open the PR.
 
-- Drag a repo to reorder rows.
+- Rows are in alphabetical order. To set your own order, set **Repo order** to **Manual** in Settings, then drag a repo row.
 - **+** starts a session in that repo. **…** removes a repo with no sessions.
 - Search by title, PR link or PR number.
 
@@ -96,18 +96,71 @@ Cards show the branch, time in state, lines changed and the PR badge. The badge 
 | Area | What it shows |
 |---|---|
 | **Terminal** | The real `claude` process. |
+| **Terminal / Chat** | Switches the center between the terminal and the chat of the same process (see below). Each session remembers its choice. |
 | **Header** | PR badge, branch, lines changed, uncommitted files, ahead/behind, context use. Click the title to rename. |
 | **Sidebar** | Every session and what it is running. **Collapse sidebar** shrinks it to a rail. |
 | **Side pane** | Files, Diff, PR, Notes, Workflow, and Artifacts (claude.ai pages the session linked, when there are any). The button at the top right hides it. |
 
 Repos have notes too: click the pencil next to the repo name in the sidebar.
 
+### Chat view
+
+![Chat view](docs/screenshots/chat.png)
+
+Click **Chat** in the session header to read the session as a chat instead of a terminal. It is the same `claude` process: switching back and forth never restarts or touches it.
+
+- Your prompts sit on the right, with their images. Claude's replies are formatted text.
+- Each tool call is one line with its command or file and a ✓ or ✕. Click it to see its input and result. Thinking is a collapsed **Thinking** line.
+- File paths are links: click one to open it in the Files tab, at its line. <kbd>⌘</kbd>-click a **Read**, **Write** or edit line (**Edit**, **MultiEdit**, **NotebookEdit**) to open its file.
+- A subagent's work sits under the **Agent** line that started it. Click it to open the subagent's thread.
+- `!` commands and slash commands such as `/model` show with their output. `/compact` and interruptions are divider lines.
+- While Claude works, **Claude is writing…** shows at the bottom. New replies appear within about 2 seconds, a block at a time. The chat follows them while you are at the bottom, and stays put while you scroll up to read.
+- After `/clear` the chat starts empty. After a resume it shows the resumed conversation.
+- In a folder Claude Code hasn't opened before, it first asks in the terminal whether to trust the folder. If a session stays **Starting** for a few seconds, the chat says Claude Code may be waiting for an answer, with **Open in terminal**.
+- When Claude needs an answer, it shows as a card above the composer (see **Answer cards**). Anything the chat can't show reads **Shown in the terminal**, with **Open in terminal**.
+
+To open every new session in Chat, set **New sessions open in** to **Chat** in Settings. The Cockpit view always shows terminals.
+
+### Answer cards
+
+![Answer cards](docs/screenshots/answer-cards.png)
+
+When a session is **Blocked**, its chat shows what Claude is waiting on as cards above the composer. Answer there, or in the terminal as before: whichever comes first counts.
+
+| Claude asks | The card shows | You can |
+|---|---|---|
+| To use a tool (run a command, edit a file…) | The command or file path | **Allow**, or **Deny** with an optional message for Claude |
+| A question (`AskUserQuestion`) | Every question with its options, and **Other…** for your own words | Pick the answers, then **Submit** |
+| To approve a plan | The plan | **Send feedback** so Claude revises it, or **Approve in terminal** |
+| Anything else (an MCP server's form, an error) | **Answer in terminal** | **Open in terminal** |
+
+- A subagent's card names the subagent, with ⧉.
+- After a click, the button spins until Claude moves on. Nothing is typed into the terminal.
+- A Deny with no message tells Claude "Denied in Cockpit."
+- If you answer in the terminal first, the card says **Answered in the terminal** and fades.
+- A card left unanswered for about 10 minutes turns into **Answer in terminal**: Claude Code's own question is still open there.
+- Cards never offer "allow for the session" or a mode change, and plans are approved only in the terminal. Use the terminal for those.
+
+### Composer
+
+![Composer](docs/screenshots/composer.png)
+
+The box under the chat sends your next prompt to Claude, as if you had typed it in the terminal.
+
+- Press <kbd>↩</kbd> or click **Send**. <kbd>⇧</kbd> <kbd>↩</kbd> starts a new line. Type `/` to pick a slash command.
+- Paste, drop or click **Add files…** to attach screenshots and files, as in the first prompt.
+- It sends only when it's your turn. Otherwise a line says why: **Claude is working**, **Claude is waiting on a question above**, **Starting…** or **Session ended**. You can keep typing; the text waits for you.
+- Each session keeps its own draft until you send it, even when you switch views or sessions.
+- If you typed in the terminal since Claude's last turn, Send waits. Any key counts, even <kbd>↑</kbd>, <kbd>⇧</kbd> <kbd>⇥</kbd> or <kbd>esc</kbd>; keys that answer a question of Claude's don't. A live view of the terminal's last lines shows what you left there. Click **Back to terminal** to finish it there, or **Send anyway** to send the composer's text.
+- Send also waits after a command from the composer that sends no prompt, such as `/model` (its picker may still be open in the terminal) or `/cost`. The note goes once a prompt goes in, or after `/clear`.
+
 ### Files
 
 ![Files tab](docs/screenshots/files.png)
 
 - Read-only file tree. `M` marks changed files, `A` added ones.
-- Syntax highlighting. Markdown is rendered, with its images from the worktree or GitHub. Images from other sites stay links. An image that can't load shows as its text, a link when it has a web address. **Source** shows the raw text.
+- Syntax highlighting and line numbers. Markdown is rendered, with its images from the worktree or GitHub. Images from other sites stay links. An image that can't load shows as its text, a link when it has a web address. **Source** shows the raw text.
+- <kbd>⌘</kbd>-click a file path in the terminal, like `src/App.tsx:120`, or click one in the chat, to open it here. The tree opens to the file, and the viewer scrolls to that line and highlights it.
 - **Pop out** shows the file over the terminal.
 
 ### Main branch
@@ -211,8 +264,10 @@ The sidebar footer shows your plan's 5-hour and weekly limits: % used and reset 
 | Keep Mac awake while sessions work (plugged in) | Off |
 | Theme | Slate (Ledger is a darker alternative) |
 | Default model | Opus |
+| Repo order | Alphabetical (**Manual** keeps the order you drag repo rows into on the Board) |
+| New sessions open in | Terminal (**Chat** opens new sessions in the chat view) |
 
-The installed app also shows its version and **Check for updates**.
+The installed app also shows its version and **Check for updates**. The last row, **License**, shows Cockpit's license and the licenses of the open-source software it includes. **Cockpit → About Cockpit** shows the version and the copyright.
 
 ---
 
@@ -224,7 +279,9 @@ The installed app also shows its version and **Check for updates**.
 | <kbd>⌘</kbd> <kbd>+</kbd> / <kbd>⌘</kbd> <kbd>−</kbd> / <kbd>⌘</kbd> <kbd>0</kbd> | Terminal font bigger / smaller / reset |
 | <kbd>⌘</kbd> <kbd>↩</kbd> | Run the next workflow step |
 | <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>↩</kbd> | Skip the next workflow step |
-| <kbd>⇧</kbd> <kbd>↩</kbd> | New line in the terminal, without sending |
+| <kbd>⇧</kbd> <kbd>↩</kbd> | New line in the terminal or the composer, without sending |
+| <kbd>↩</kbd> | Send the composer's prompt |
+| <kbd>⌘</kbd>-click a file path in the terminal | Open the file in the Files tab, at its line |
 
 ---
 
@@ -246,6 +303,19 @@ Settings shows the installed version and has **Check for updates** to check righ
 
 > [!NOTE]
 > The app holds no GitHub token. It reads the public feed at `https://github.com/kaimunlau/cockpit-releases/releases/latest/download/latest.json` and verifies each update's signature before installing it.
+
+### Beta builds
+
+![Beta builds](docs/screenshots/beta-builds.png)
+
+- Turn on **Beta builds** in Settings to get changes before they're released. It is off by default.
+- Cockpit checks for a beta at once, then on the usual schedule. Betas install the same way as releases, and their version ends in `-beta.N`.
+- A release newer than your beta still installs.
+- Turn **Beta builds** off to go back to the latest release. Cockpit checks at once and installs it, even though it is older than your beta.
+- Going back keeps your repos, sessions, workflows and macros. A value only the beta knows (a new setting option, say) goes back to its default. Cockpit first keeps a copy of the beta's data, as `state.json.beta-<time>` in `~/Library/Application Support/com.cc-cockpit.app/`.
+
+> [!WARNING]
+> Beta builds may be unstable.
 
 ---
 
