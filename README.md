@@ -96,11 +96,29 @@ Cards show the branch, time in state, lines changed and the PR badge. The badge 
 | Area | What it shows |
 |---|---|
 | **Terminal** | The real `claude` process. |
+| **Terminal / Chat** | Switches the center between the terminal and the chat of the same process (see below). Each session remembers its choice. |
 | **Header** | PR badge, branch, lines changed, uncommitted files, ahead/behind, context use. Click the title to rename. |
 | **Sidebar** | Every session and what it is running. **Collapse sidebar** shrinks it to a rail. |
 | **Side pane** | Files, Diff, PR, Notes, Workflow, and Artifacts (claude.ai pages the session linked, when there are any). The button at the top right hides it. |
 
 Repos have notes too: click the pencil next to the repo name in the sidebar.
+
+### Chat view
+
+![Chat view](docs/screenshots/chat.png)
+
+Click **Chat** in the session header to read the session as a chat instead of a terminal. It is the same `claude` process: switching back and forth never restarts or touches it.
+
+- Your prompts sit on the right, with their images. Claude's replies are formatted text.
+- Each tool call is one line with its command or file and a ✓ or ✕. Click it to see its input and result. Thinking is a collapsed **Thinking** line.
+- A subagent's work sits under the **Agent** line that started it. Click it to open the subagent's thread.
+- `!` commands and slash commands such as `/model` show with their output. `/compact` and interruptions are divider lines.
+- While Claude works, **Claude is writing…** shows at the bottom. New replies appear within about 2 seconds, a block at a time. The chat follows them while you are at the bottom, and stays put while you scroll up to read.
+- After `/clear` the chat starts empty. After a resume it shows the resumed conversation.
+- In a folder Claude Code hasn't opened before, it first asks in the terminal whether to trust the folder. If a session stays **Starting** for a few seconds, the chat says Claude Code may be waiting for an answer, with **Open in terminal**.
+- The chat is read only: type your prompts and answer Claude's questions in the terminal. Anything the chat can't show reads **Shown in the terminal**, with **Open in terminal**.
+
+To open every new session in Chat, set **New sessions open in** to **Chat** in Settings. The Cockpit view always shows terminals.
 
 ### Files
 
@@ -212,6 +230,7 @@ The sidebar footer shows your plan's 5-hour and weekly limits: % used and reset 
 | Theme | Slate (Ledger is a darker alternative) |
 | Default model | Opus |
 | Repo order | Alphabetical (**Manual** keeps the order you drag repo rows into on the Board) |
+| New sessions open in | Terminal (**Chat** opens new sessions in the chat view) |
 
 The installed app also shows its version and **Check for updates**. The last row, **License**, shows Cockpit's license and the licenses of the open-source software it includes. **Cockpit → About Cockpit** shows the version and the copyright.
 
