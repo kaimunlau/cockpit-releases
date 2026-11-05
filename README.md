@@ -249,6 +249,19 @@ Settings shows the installed version and has **Check for updates** to check righ
 > [!NOTE]
 > The app holds no GitHub token. It reads the public feed at `https://github.com/kaimunlau/cockpit-releases/releases/latest/download/latest.json` and verifies each update's signature before installing it.
 
+### Beta builds
+
+![Beta builds](docs/screenshots/beta-builds.png)
+
+- Turn on **Beta builds** in Settings to get changes before they're released. It is off by default.
+- Cockpit checks for a beta at once, then on the usual schedule. Betas install the same way as releases, and their version ends in `-beta.N`.
+- A release newer than your beta still installs.
+- Turn **Beta builds** off to go back to the latest release. Cockpit checks at once and installs it, even though it is older than your beta.
+- Going back keeps your repos, sessions, workflows and macros. A value only the beta knows (a new setting option, say) goes back to its default. Cockpit first keeps a copy of the beta's data, as `state.json.beta-<time>` in `~/Library/Application Support/com.cc-cockpit.app/`.
+
+> [!WARNING]
+> Beta builds may be unstable.
+
 ---
 
 ## License
