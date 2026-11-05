@@ -107,7 +107,7 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 ![Files tab](docs/screenshots/files.png)
 
 - Read-only file tree. `M` marks changed files, `A` added ones.
-- Syntax highlighting. Markdown is rendered; **Source** shows the raw text.
+- Syntax highlighting. Markdown is rendered, with its images from the worktree or the web; **Source** shows the raw text.
 - **Pop out** shows the file over the terminal.
 
 ### Main branch
@@ -133,6 +133,7 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 ![PR tab](docs/screenshots/pr.png)
 
 - Description, checks, review, unresolved threads and a GitHub link, read through your `gh` login.
+- The description shows its images: pasted screenshots, images from the repo and badges, private repos included. They load through `gh` too. An image that can't load shows as a link with its text.
 - Merge or squash-merge after a confirm. Cockpit remembers your last method.
 - **Update branch** when the branch is behind.
 - A draft PR gets **Ready for review** in place of the merge button. One click marks it ready on GitHub.
