@@ -75,7 +75,7 @@ One row per repo, one column per state:
 
 Cards show the branch, time in state, lines changed and the PR badge. The badge turns red on failed CI, requested changes or conflicts; click it to open the PR.
 
-- Drag a repo to reorder rows.
+- Rows are in alphabetical order. To set your own order, set **Repo order** to **Manual** in Settings, then drag a repo row.
 - **+** starts a session in that repo. **…** removes a repo with no sessions.
 - Search by title, PR link or PR number.
 
@@ -111,6 +111,7 @@ Click **Chat** in the session header to read the session as a chat instead of a 
 
 - Your prompts sit on the right, with their images. Claude's replies are formatted text.
 - Each tool call is one line with its command or file and a ✓ or ✕. Click it to see its input and result. Thinking is a collapsed **Thinking** line.
+- File paths are links: click one to open it in the Files tab, at its line. <kbd>⌘</kbd>-click a **Read**, **Write** or edit line (**Edit**, **MultiEdit**, **NotebookEdit**) to open its file.
 - A subagent's work sits under the **Agent** line that started it. Click it to open the subagent's thread.
 - `!` commands and slash commands such as `/model` show with their output. `/compact` and interruptions are divider lines.
 - While Claude works, **Claude is writing…** shows at the bottom. New replies appear within about 2 seconds, a block at a time. The chat follows them while you are at the bottom, and stays put while you scroll up to read.
@@ -158,7 +159,8 @@ The box under the chat sends your next prompt to Claude, as if you had typed it 
 ![Files tab](docs/screenshots/files.png)
 
 - Read-only file tree. `M` marks changed files, `A` added ones.
-- Syntax highlighting. Markdown is rendered; **Source** shows the raw text.
+- Syntax highlighting and line numbers. Markdown is rendered; **Source** shows the raw text.
+- <kbd>⌘</kbd>-click a file path in the terminal, like `src/App.tsx:120`, or click one in the chat, to open it here. The tree opens to the file, and the viewer scrolls to that line and highlights it.
 - **Pop out** shows the file over the terminal.
 
 ### Main branch
@@ -261,9 +263,10 @@ The sidebar footer shows your plan's 5-hour and weekly limits: % used and reset 
 | Keep Mac awake while sessions work (plugged in) | Off |
 | Theme | Slate (Ledger is a darker alternative) |
 | Default model | Opus |
+| Repo order | Alphabetical (**Manual** keeps the order you drag repo rows into on the Board) |
 | New sessions open in | Terminal (**Chat** opens new sessions in the chat view) |
 
-The installed app also shows its version and **Check for updates**.
+The installed app also shows its version and **Check for updates**. The last row, **License**, shows Cockpit's license and the licenses of the open-source software it includes. **Cockpit → About Cockpit** shows the version and the copyright.
 
 ---
 
@@ -277,6 +280,7 @@ The installed app also shows its version and **Check for updates**.
 | <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>↩</kbd> | Skip the next workflow step |
 | <kbd>⇧</kbd> <kbd>↩</kbd> | New line in the terminal or the composer, without sending |
 | <kbd>↩</kbd> | Send the composer's prompt |
+| <kbd>⌘</kbd>-click a file path in the terminal | Open the file in the Files tab, at its line |
 
 ---
 
@@ -298,6 +302,19 @@ Settings shows the installed version and has **Check for updates** to check righ
 
 > [!NOTE]
 > The app holds no GitHub token. It reads the public feed at `https://github.com/kaimunlau/cockpit-releases/releases/latest/download/latest.json` and verifies each update's signature before installing it.
+
+### Beta builds
+
+![Beta builds](docs/screenshots/beta-builds.png)
+
+- Turn on **Beta builds** in Settings to get changes before they're released. It is off by default.
+- Cockpit checks for a beta at once, then on the usual schedule. Betas install the same way as releases, and their version ends in `-beta.N`.
+- A release newer than your beta still installs.
+- Turn **Beta builds** off to go back to the latest release. Cockpit checks at once and installs it, even though it is older than your beta.
+- Going back keeps your repos, sessions, workflows and macros. A value only the beta knows (a new setting option, say) goes back to its default. Cockpit first keeps a copy of the beta's data, as `state.json.beta-<time>` in `~/Library/Application Support/com.cc-cockpit.app/`.
+
+> [!WARNING]
+> Beta builds may be unstable.
 
 ---
 
