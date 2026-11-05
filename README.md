@@ -116,9 +116,29 @@ Click **Chat** in the session header to read the session as a chat instead of a 
 - While Claude works, **Claude is writing…** shows at the bottom. New replies appear within about 2 seconds, a block at a time. The chat follows them while you are at the bottom, and stays put while you scroll up to read.
 - After `/clear` the chat starts empty. After a resume it shows the resumed conversation.
 - In a folder Claude Code hasn't opened before, it first asks in the terminal whether to trust the folder. If a session stays **Starting** for a few seconds, the chat says Claude Code may be waiting for an answer, with **Open in terminal**.
-- Answer Claude's questions in the terminal. Anything the chat can't show reads **Shown in the terminal**, with **Open in terminal**.
+- When Claude needs an answer, it shows as a card above the composer (see **Answer cards**). Anything the chat can't show reads **Shown in the terminal**, with **Open in terminal**.
 
 To open every new session in Chat, set **New sessions open in** to **Chat** in Settings. The Cockpit view always shows terminals.
+
+### Answer cards
+
+![Answer cards](docs/screenshots/answer-cards.png)
+
+When a session is **Blocked**, its chat shows what Claude is waiting on as cards above the composer. Answer there, or in the terminal as before: whichever comes first counts.
+
+| Claude asks | The card shows | You can |
+|---|---|---|
+| To use a tool (run a command, edit a file…) | The command or file path | **Allow**, or **Deny** with an optional message for Claude |
+| A question (`AskUserQuestion`) | Every question with its options, and **Other…** for your own words | Pick the answers, then **Submit** |
+| To approve a plan | The plan | **Send feedback** so Claude revises it, or **Approve in terminal** |
+| Anything else (an MCP server's form, an error) | **Answer in terminal** | **Open in terminal** |
+
+- A subagent's card names the subagent, with ⧉.
+- After a click, the button spins until Claude moves on. Nothing is typed into the terminal.
+- A Deny with no message tells Claude "Denied in Cockpit."
+- If you answer in the terminal first, the card says **Answered in the terminal** and fades.
+- A card left unanswered for about 10 minutes turns into **Answer in terminal**: Claude Code's own question is still open there.
+- Cards never offer "allow for the session" or a mode change, and plans are approved only in the terminal. Use the terminal for those.
 
 ### Composer
 
