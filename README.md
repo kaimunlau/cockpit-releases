@@ -149,7 +149,7 @@ The box under the chat sends your next prompt to Claude, as if you had typed it 
 
 - Press <kbd>↩</kbd> or click **Send**. <kbd>⇧</kbd> <kbd>↩</kbd> starts a new line. Type `/` to pick a slash command.
 - Paste, drop or click **Add files…** to attach screenshots and files, as in the first prompt.
-- It sends when Claude is ready for a prompt: on your turn, and also when Claude has finished but its background shells or subagents still run (a CI watcher, say). Otherwise a line says why: **Claude is working**, **Claude is waiting on a question above**, **Starting…** or **Session ended**. You can keep typing; the text waits for you.
+- It sends when Claude is ready for a prompt: on your turn, and also when Claude has finished but its background shells or subagents still run (a CI watcher, say), unless a macro is waiting on them to type its next command. Otherwise a line says why: **Claude is working**, **Claude is waiting on a question above**, **Starting…** or **Session ended**. You can keep typing; the text waits for you.
 - Each session keeps its own draft until you send it, even when you switch views or sessions.
 - If you typed in the terminal since Claude's last turn, Send waits. Any key counts, even <kbd>↑</kbd>, <kbd>⇧</kbd> <kbd>⇥</kbd> or <kbd>esc</kbd>; keys that answer a question of Claude's don't. A live view of the terminal's last lines shows what you left there. Click **Back to terminal** to finish it there, or **Send anyway** to send the composer's text.
 - Send also waits after a command from the composer that sends no prompt, such as `/model` (its picker may still be open in the terminal) or `/cost`. The note goes once a prompt goes in, or after `/clear`.
