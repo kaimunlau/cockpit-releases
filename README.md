@@ -107,7 +107,7 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 ![Files tab](docs/screenshots/files.png)
 
 - Read-only file tree. `M` marks changed files, `A` added ones.
-- Syntax highlighting. Markdown is rendered, with its images from the worktree or GitHub. Images from other sites stay links, and an image that can't load shows as its text. **Source** shows the raw text.
+- Syntax highlighting. Markdown is rendered, with its images from the worktree or GitHub. Images from other sites stay links. An image that can't load shows as its text, a link when it has a web address. **Source** shows the raw text.
 - **Pop out** shows the file over the terminal.
 
 ### Main branch
