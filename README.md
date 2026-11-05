@@ -111,6 +111,7 @@ Click **Chat** in the session header to read the session as a chat instead of a 
 
 - Your prompts sit on the right, with their images. Claude's replies are formatted text.
 - Each tool call is one line with its command or file and a ✓ or ✕. Click it to see its input and result. Thinking is a collapsed **Thinking** line.
+- Tool calls and thinking in a row fold into one steps line. While Claude works, it shows the step Claude is on, such as **◐ Bash cargo test · 3 steps**, and each new step replaces it. Once the run is over, it reads like **6 steps Bash ×5 · Edit**, with ✓, or ✕ and how many failed. Click it to see every step.
 - File paths are links: click one to open it in the Files tab, at its line. <kbd>⌘</kbd>-click a **Read**, **Write** or edit line (**Edit**, **MultiEdit**, **NotebookEdit**) to open its file.
 - A subagent's work sits under the **Agent** line that started it. Click it to open the subagent's thread.
 - `!` commands and slash commands such as `/model` show with their output. `/compact` and interruptions are divider lines.
