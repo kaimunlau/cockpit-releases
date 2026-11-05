@@ -113,6 +113,7 @@ Click **Chat** in the session header to read the session as a chat instead of a 
 - Each tool call is one line with its command or file and a ✓ or ✕. Click it to see its input and result. Thinking is a collapsed **Thinking** line.
 - File paths are links: click one to open it in the Files tab, at its line. <kbd>⌘</kbd>-click a **Read**, **Write** or edit line (**Edit**, **MultiEdit**, **NotebookEdit**) to open its file.
 - A subagent's work sits under the **Agent** line that started it. Click it to open the subagent's thread.
+- Subagents, background shells and monitors that are still running are listed above the composer, each with how long it has run. The list stays there while you scroll, and each line goes away when its work ends.
 - `!` commands and slash commands such as `/model` show with their output. `/compact` and interruptions are divider lines.
 - While Claude works, **Claude is writing…** shows at the bottom. New replies appear within about 2 seconds, a block at a time. The chat follows them while you are at the bottom, and stays put while you scroll up to read.
 - After `/clear` the chat starts empty. After a resume it shows the resumed conversation.
