@@ -109,6 +109,9 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 
 Click **Chat** in the session header to read the session as a chat instead of a terminal. It is the same `claude` process: switching back and forth never restarts or touches it.
 
+> [!NOTE]
+> Chat is in beta, so both Chat toggles carry a **Beta** tag. The terminal is still the full view: anything the chat can't show, the terminal does.
+
 - Your prompts sit on the right, with their images. Claude's replies are formatted text.
 - Each tool call is one line with its command or file and a ✓ or ✕. Click it to see its input and result. Thinking is a collapsed **Thinking** line.
 - File paths are links: click one to open it in the Files tab, at its line. <kbd>⌘</kbd>-click a **Read**, **Write** or edit line (**Edit**, **MultiEdit**, **NotebookEdit**) to open its file.
