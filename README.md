@@ -147,6 +147,7 @@ When a session is **Blocked**, its chat shows what Claude is waiting on as cards
 
 The box under the chat sends your next prompt to Claude, as if you had typed it in the terminal.
 
+- Opening a session in Chat puts the cursor in the composer, so you can start typing right away.
 - Press <kbd>↩</kbd> or click **Send**. <kbd>⇧</kbd> <kbd>↩</kbd> starts a new line. Type `/` to pick a slash command.
 - Paste, drop or click **Add files…** to attach screenshots and files, as in the first prompt.
 - It sends only when it's your turn. Otherwise a line says why: **Claude is working**, **Claude is waiting on a question above**, **Starting…** or **Session ended**. You can keep typing; the text waits for you.
