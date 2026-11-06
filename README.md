@@ -277,7 +277,7 @@ The installed app also shows its version and **Check for updates**. The last row
 | Shortcut | Action |
 |---|---|
 | <kbd>⌘</kbd> <kbd>B</kbd> | Back to the board |
-| <kbd>⌘</kbd> <kbd>+</kbd> / <kbd>⌘</kbd> <kbd>−</kbd> / <kbd>⌘</kbd> <kbd>0</kbd> | Terminal font bigger / smaller / reset |
+| <kbd>⌘</kbd> <kbd>+</kbd> / <kbd>⌘</kbd> <kbd>−</kbd> / <kbd>⌘</kbd> <kbd>0</kbd> | Terminal and chat text bigger / smaller / reset |
 | <kbd>⌘</kbd> <kbd>↩</kbd> | Run the next workflow step |
 | <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>↩</kbd> | Skip the next workflow step |
 | <kbd>⇧</kbd> <kbd>↩</kbd> | New line in the terminal or the composer, without sending |
