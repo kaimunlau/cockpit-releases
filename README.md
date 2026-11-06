@@ -109,7 +109,7 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 
 Click **Chat** in the session header to read the session as a chat instead of a terminal. It is the same `claude` process: switching back and forth never restarts or touches it.
 
-- Your prompts sit on the right, with their images. Claude's replies are formatted text.
+- Your prompts sit on the right, with their images. Claude's replies are formatted text, with their images. An image file shows only if it is inside the session's worktree. An image on GitHub shows too; one from any other site stays a link. An image that can't load shows as its text, a link when it has a web address.
 - Each tool call is one line with its command or file and a ✓ or ✕. Click it to see its input and result. Thinking is a collapsed **Thinking** line.
 - File paths are links: click one to open it in the Files tab, at its line. <kbd>⌘</kbd>-click a **Read**, **Write** or edit line (**Edit**, **MultiEdit**, **NotebookEdit**) to open its file.
 - A subagent's work sits under the **Agent** line that started it. Click it to open the subagent's thread.
@@ -131,7 +131,7 @@ When a session is **Blocked**, its chat shows what Claude is waiting on as cards
 |---|---|---|
 | To use a tool (run a command, edit a file…) | The command or file path | **Allow**, or **Deny** with an optional message for Claude |
 | A question (`AskUserQuestion`) | Every question with its options, and **Other…** for your own words | Pick the answers, then **Submit** |
-| To approve a plan | The plan | **Send feedback** so Claude revises it, or **Approve in terminal** |
+| To approve a plan | The plan, with its images from the worktree or GitHub | **Send feedback** so Claude revises it, or **Approve in terminal** |
 | Anything else (an MCP server's form, an error) | **Answer in terminal** | **Open in terminal** |
 
 - A subagent's card names the subagent, with ⧉.
@@ -159,7 +159,7 @@ The box under the chat sends your next prompt to Claude, as if you had typed it 
 ![Files tab](docs/screenshots/files.png)
 
 - Read-only file tree. `M` marks changed files, `A` added ones.
-- Syntax highlighting and line numbers. Markdown is rendered; **Source** shows the raw text.
+- Syntax highlighting and line numbers. Markdown is rendered, with its images from the worktree or GitHub. Images from other sites stay links. An image that can't load shows as its text, a link when it has a web address. **Source** shows the raw text.
 - <kbd>⌘</kbd>-click a file path in the terminal, like `src/App.tsx:120`, or click one in the chat, to open it here. The tree opens to the file, and the viewer scrolls to that line and highlights it.
 - **Pop out** shows the file over the terminal.
 
@@ -170,7 +170,7 @@ The box under the chat sends your next prompt to Claude, as if you had typed it 
 - Click a repo's name in the sidebar to browse its main branch, no session needed.
 - Cockpit reads the first branch that exists of `origin/main`, `main`, `origin/master` and `master`. The header shows it and its commit, e.g. `origin/main @ 8e2f9a1`.
 - It shows what is committed, not the repo folder's uncommitted edits, and leaves submodules out. It never fetches: `origin/main` is as fresh as your last `git fetch`.
-- **Reload** reads the branch again. Same viewer as the Files tab: highlighted code, rendered Markdown with **Source**.
+- **Reload** reads the branch again. Same viewer as the Files tab: highlighted code, rendered Markdown with **Source**. Images there stay links.
 
 ### Diff
 
@@ -183,9 +183,10 @@ The box under the chat sends your next prompt to Claude, as if you had typed it 
 
 ### Pull request
 
-![PR tab](docs/screenshots/pr.png)
+![PR tab](docs/screenshots/pr-images.png)
 
 - Description, checks, review, unresolved threads and a GitHub link, read through your `gh` login.
+- The description shows its images: pasted screenshots, images from the repo and badges, private repos included. They load through `gh` too. An image that can't load shows as its text, a link when it has a web address.
 - Merge or squash-merge after a confirm. Cockpit remembers your last method.
 - **Update branch** when the branch is behind.
 - A draft PR gets **Ready for review** in place of the merge button. One click marks it ready on GitHub.
