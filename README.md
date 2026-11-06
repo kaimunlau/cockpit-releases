@@ -152,10 +152,12 @@ When a session is **Blocked**, its chat shows what Claude is waiting on as cards
 
 The box under the chat sends your next prompt to Claude, as if you had typed it in the terminal.
 
+- Opening a session in Chat puts the cursor in the composer, so you can start typing right away.
 - Press <kbd>↩</kbd> or click **Send**. <kbd>⇧</kbd> <kbd>↩</kbd> starts a new line. Type `/` to pick a slash command.
 - Paste, drop or click **Add files…** to attach screenshots and files, as in the first prompt.
 - It sends when Claude is ready for a prompt: on your turn, and also when Claude has finished but its background shells or subagents still run (a CI watcher, say), unless a macro is waiting on them to type its next command. Otherwise a line says why: **Claude is working**, **Claude is waiting on a question above**, **Starting…** or **Session ended**. You can keep typing; the text waits for you.
 - Each session keeps its own draft until you send it, even when you switch views or sessions.
+- Chips at the bottom left show what the terminal's status line shows: the permission mode (**Plan**, **Auto**, **Accept edits** or **Manual**, each in its own colour), the model, the effort level and **thinking off** when thinking is off. They are read only: change them in the terminal (<kbd>⇧</kbd> <kbd>⇥</kbd>, `/model`). After a <kbd>⇧</kbd> <kbd>⇥</kbd>, the mode chip catches up the next time Claude acts: on your turn, that is once you send your next prompt.
 - If Claude Code's input in the terminal holds something, Send waits: text you typed there, or a picker you opened. Keys that leave the input empty don't hold it, such as <kbd>esc</kbd>, <kbd>⇧</kbd> <kbd>⇥</kbd>, or text you typed and erased. A live view of the terminal's last lines shows what you left there. Click **Back to terminal** to finish it there, or **Send anyway** to send the composer's text.
 - A picker opened by a command from the composer, such as `/model`, holds Send the same way until you close it in the terminal. A command that leaves the input empty, such as `/cost`, doesn't.
 
@@ -188,7 +190,7 @@ The box under the chat sends your next prompt to Claude, as if you had typed it 
 
 ### Pull request
 
-![PR tab](docs/screenshots/pr-images.png)
+![PR tab](docs/screenshots/pr.png)
 
 - Description, checks, review, unresolved threads and a GitHub link, read through your `gh` login.
 - The description shows its images: pasted screenshots, images from the repo and badges, private repos included. They load through `gh` too. An image that can't load shows as its text, a link when it has a web address.
@@ -271,6 +273,7 @@ The sidebar footer shows your plan's 5-hour and weekly limits: % used and reset 
 | Default model | Opus |
 | Repo order | Alphabetical (**Manual** keeps the order you drag repo rows into on the Board) |
 | New sessions open in | Terminal (**Chat** opens new sessions in the chat view) |
+| Beta builds | Off (installed app only, see [Beta builds](#beta-builds)) |
 
 The installed app also shows its version and **Check for updates**. The last row, **License**, shows Cockpit's license and the licenses of the open-source software it includes. **Cockpit → About Cockpit** shows the version and the copyright.
 
@@ -281,7 +284,7 @@ The installed app also shows its version and **Check for updates**. The last row
 | Shortcut | Action |
 |---|---|
 | <kbd>⌘</kbd> <kbd>B</kbd> | Back to the board |
-| <kbd>⌘</kbd> <kbd>+</kbd> / <kbd>⌘</kbd> <kbd>−</kbd> / <kbd>⌘</kbd> <kbd>0</kbd> | Terminal font bigger / smaller / reset |
+| <kbd>⌘</kbd> <kbd>+</kbd> / <kbd>⌘</kbd> <kbd>−</kbd> / <kbd>⌘</kbd> <kbd>0</kbd> | Terminal and chat text bigger / smaller / reset |
 | <kbd>⌘</kbd> <kbd>↩</kbd> | Run the next workflow step |
 | <kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>↩</kbd> | Skip the next workflow step |
 | <kbd>⇧</kbd> <kbd>↩</kbd> | New line in the terminal or the composer, without sending |
@@ -313,7 +316,7 @@ Settings shows the installed version and has **Check for updates** to check righ
 
 ![Beta builds](docs/screenshots/beta-builds.png)
 
-- Turn on **Beta builds** in Settings to get changes before they're released. It is off by default.
+- Turn on **Beta builds** in Settings to get changes before they're released.
 - Cockpit checks for a beta at once, then on the usual schedule. Betas install the same way as releases, and their version ends in `-beta.N`.
 - A release newer than your beta still installs.
 - Turn **Beta builds** off to go back to the latest release. Cockpit checks at once and installs it, even though it is older than your beta.
