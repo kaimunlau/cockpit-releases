@@ -78,7 +78,10 @@ Cards show the branch, time in state, lines changed and the PR badge. The badge 
 - Rows are in alphabetical order. To set your own order, set **Repo order** to **Manual** in Settings, then drag a repo row.
 - **+** starts a session in that repo.
 - **…** → **Default branch…** changes the repo's default branch. **…** → **Remove repo** removes a repo with no sessions.
+- **…** → **Color** changes the repo's color, with ten to choose from. The tile, the row's edge and the sidebar change at once.
 - Search by title, PR link or PR number.
+
+![Choosing a repo's color](docs/screenshots/repo-color.png)
 
 ### Starting a session
 
@@ -98,9 +101,9 @@ Cards show the branch, time in state, lines changed and the PR badge. The badge 
 | Area | What it shows |
 |---|---|
 | **Terminal** | The real `claude` process. |
-| **Terminal / Chat** | The two icons switch the center between the terminal and the chat of the same process (see below). Each session remembers its choice. |
+| **Terminal / Chat** | With **Chat UI** on in Settings, the two icons switch the center between the terminal and the chat of the same process (see below). Each session remembers its choice. |
 | **Header** | PR badge, branch, lines changed, uncommitted files, ahead/behind, context use. Click the title to rename. |
-| **Sidebar** | Every session and what it is running. **Collapse sidebar** shrinks it to a rail. |
+| **Sidebar** | Every session and what it is running, grouped by repo. Each repo has a tile with its initials, in one of ten colors; the board shows the same tile. A repo you add gets a color its neighbours don't have, and keeps it until you pick another with **…** → **Color** on the board. A repo's name stays at the top while you scroll through its sessions. **Collapse sidebar** shrinks it to a rail. |
 | **Side pane** | Files, Diff, PR, Notes, Workflow, and Artifacts (claude.ai pages the session linked, when there are any). The button at the top right hides it. |
 
 Repos have notes too: click the pencil next to the repo name in the sidebar.
@@ -109,10 +112,10 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 
 ![Chat view](docs/screenshots/chat.png)
 
-Click the chat icon in the session header (its tooltip reads **Chat (Beta)**) to read the session as a chat instead of a terminal. It is the same `claude` process: switching back and forth never restarts or touches it.
+Turn on **Chat UI** in Settings. Then click the chat icon in the session header to read the session as a chat instead of a terminal. It is the same `claude` process: switching back and forth never restarts or touches it.
 
 > [!NOTE]
-> Chat is in beta, so every chat icon carries a **Beta** pill, and the toggle in Settings a **Beta** tag. The terminal is still the full view: anything the chat can't show, the terminal does.
+> Chat UI is in beta and may be unstable, so its switch in Settings carries a **Beta** tag. While it is off, every session shows its terminal and there are no chat icons. Turn it back on and each session returns to the view it was in. The terminal is still the full view: anything the chat can't show, the terminal does.
 
 - Your prompts sit on the right, with their images. Claude's replies are formatted text, with their images. An image file shows only if it is inside the session's worktree. An image on GitHub shows too; one from any other site stays a link. An image that can't load shows as its text, a link when it has a web address.
 - Each tool call is one line with its command or file and a ✓ or ✕. Click it to see its input and result. Thinking is a collapsed **Thinking** line.
@@ -121,14 +124,14 @@ Click the chat icon in the session header (its tooltip reads **Chat (Beta)**) to
 - Every code block has a copy button in its top-right corner: Claude's code, a tool call's input and result, and command output. It shows while the pointer is over the block or the button has keyboard focus. Click it to copy the block's text. It reads **Copied** for 2 seconds, or **Copy failed** if the clipboard refuses.
 - A subagent's work sits under the **Agent** line that started it. Click it to open the subagent's thread.
 - Subagents, background shells and monitors that are still running are listed above the composer, each with how long it has run. The list stays there while you scroll, and each line goes away when its work ends.
-- `!` commands and slash commands such as `/model` show with their output. `/compact` and interruptions are divider lines.
+- `!` commands and slash commands such as `/model` show with their output. A skill or custom command you send, such as `/superpowers:brainstorming …`, shows as your prompt, as you typed it. `/compact` and interruptions are divider lines.
 - New replies appear within about 2 seconds, a block at a time. The chat follows them while you are at the bottom, and stays put while you scroll up to read.
 - Text that arrives while the chat is open moves in a little: a reply fades up line by line and your prompt fades in. Set **Chat text** to **Type** to have replies type themselves out instead, or to **None** for no motion. What the chat already held when you opened it shows at once, and nothing moves while macOS **Reduce motion** is on.
 - After `/clear` the chat starts empty. After a resume it shows the resumed conversation.
 - In a folder Claude Code hasn't opened before, it first asks in the terminal whether to trust the folder. If a session stays **Starting** for a few seconds, the chat says Claude Code may be waiting for an answer, with **Open in terminal**.
 - When Claude needs an answer, it shows as a card above the composer (see **Answer cards**). Anything the chat can't show reads **Shown in the terminal**, with **Open in terminal**.
 
-To open every new session in Chat, set **New sessions open in** to **Chat** in Settings.
+To open every new session in Chat, set **New sessions open in** to **Chat** in Settings. While **Chat UI** is off, new sessions open in the terminal.
 
 ### Answer cards
 
@@ -162,7 +165,7 @@ The box under the chat sends your next prompt to Claude, as if you had typed it 
 - **Send** sends at once when Claude is ready for a prompt: on your turn, and also when Claude has finished but its background shells or subagents still run (a CI watcher, say), unless a macro is waiting on them to type its next command.
 - While Claude works or waits on a question, <kbd>↩</kbd> queues your message instead, as the line above the box says (its ◐ turns while Claude works). The button reads **Queue**, and the message shows above the box as **Queued**. When Claude's turn ends, it goes in by itself. <kbd>↩</kbd> again adds the new text to it as a new paragraph, and the button reads **Add to queue**. Files you add go with it. One message is queued per session, and it lasts until Cockpit quits.
 - While the session shows **Starting…** or **Session ended**, a line says why you can't send. You can keep typing; the text waits for you.
-- On the queued message, **Edit** puts it back in the box, **Remove** drops it, and **Send now** types it into Claude Code at once: Claude takes it at its next step, in the same turn, and it shows in the chat from there. **Send now** is unavailable while Claude waits on a question, while a macro runs, while the session starts or while text you typed in the terminal waits in Claude's input. Hover it to see why.
+- On the queued message, **Edit** puts it back in the box, **Remove** drops it, and **Send now** types it into Claude Code and, once Claude Code shows it queued, presses Claude Code's own send now (its default key, Ctrl+X Ctrl+S): Claude takes it right away, cutting short what it was doing, and it shows in the chat from there. If you bound send now to another key in Claude Code, the message stays in Claude Code's queue and goes in when the turn ends. **Send now** is unavailable while Claude waits on a question, while a macro runs, while the session starts or while text you typed in the terminal waits in Claude's input. Hover it to see why.
 - A queued message is held, not sent, when you interrupted Claude (<kbd>esc</kbd>), when you typed text in the terminal during the turn (**Send anyway** sends it), when the session ended (resume it first) or when sending failed. Keys that type nothing, such as <kbd>⇧</kbd> <kbd>⇥</kbd>, don't hold it. The bubble then says why (**Held · you interrupted Claude, so this wasn't sent**, say) and has a **Send** button.
 - While a message is held and Claude is ready, <kbd>↩</kbd> or **Send** under the box adds your new text to it and sends both.
 - Each session keeps its own draft until you send it, even when you switch views or sessions.
@@ -212,7 +215,7 @@ Answer one part of a reply without retyping it.
 
 ![A repo's default branch](docs/screenshots/repo-main.png)
 
-- Click a repo's name in the sidebar to browse its default branch, no session needed.
+- Click a repo's name in the sidebar to browse its default branch, no session needed. In the collapsed rail, click the repo's tile.
 - The default branch is set per repo. **Add repo** preselects the one GitHub reports, else the one `origin/HEAD` points at, else `main` or `master`. Change it with **…** → **Default branch…** on the board.
 - Cockpit reads `origin/<default>`, else the local `<default>`. The header shows it and its commit, e.g. `origin/main @ 8e2f9a1`.
 - It shows what is committed, not the repo folder's uncommitted edits, and leaves submodules out. It never fetches: `origin/<default>` is as fresh as your last `git fetch`. If neither branch exists, the view says so and points to **Default branch…**.
@@ -232,6 +235,7 @@ Answer one part of a reply without retyping it.
 ![PR tab](docs/screenshots/pr.png)
 
 - Description, checks, review, unresolved threads and a GitHub link, read through your `gh` login.
+- Each check shows how long it took. A running check has a spinner and a clock that counts up every second, as on GitHub. A queued check has a dashed ring and counts how long it has waited to start: **Queued 42s**. A status reported by another service (a deploy preview, say) shows no clock, since GitHub doesn't say when it started. While any check is queued or running, the tab reads the PR again every 30 seconds.
 - The header shows where the PR goes, in GitHub's order: `main ← fix/login`, the branch it merges into, then its own branch. The confirm button names it too: **Confirm squash into main**.
 - The description shows its images: pasted screenshots, images from the repo and badges, private repos included. They load through `gh` too. An image that can't load shows as its text, a link when it has a web address.
 - Merge or squash-merge after a confirm. The menu offers only the methods the repo and the rules on the PR's base branch allow. Cockpit remembers your method per repo and base branch.
@@ -282,9 +286,9 @@ A workflow is a list of prompts and macros you step through, e.g. build → revi
 
 Every running session in one grid, as its terminal or its chat. Answer prompts without switching sessions.
 
-- Each tile shows the session's own view. The terminal and chat icons in its header switch it, and the session view follows.
+- Each tile shows the session's own view, or its terminal while **Chat UI** is off. The terminal and chat icons in its header switch it, and the session view follows.
 - A chat tile has what the session's chat has: running work, answer cards and the composer.
-- **All tiles**, above the grid, switches every tile at once. It shows a view only while every tile is on it.
+- **All tiles**, above the grid, switches every tile at once. It shows a view only while every tile is on it. It appears only while **Chat UI** is on.
 - Blocked tiles glow. A pill points to blocked tiles scrolled out of view: click it to jump there, ready to answer.
 - ⤢ opens the session.
 
@@ -307,20 +311,23 @@ The sidebar footer shows your plan's 5-hour and weekly limits: % used and reset 
 
 ![Settings](docs/screenshots/settings.png)
 
-| Setting | Default |
-|---|---|
-| Jump into session on create | Off |
-| Warn about uncommitted changes on archive | On |
-| Resume when opening an Ended session | On |
-| Keep Mac awake while sessions work (plugged in) | Off |
-| Theme | Slate (Ledger is a darker alternative) |
-| Default model | Opus |
-| Repo order | Alphabetical (**Manual** keeps the order you drag repo rows into on the Board) |
-| New sessions open in | Terminal (**Chat** opens new sessions in the chat view) |
-| Chat text | Fade (how new chat text appears: **Fade** line by line, **Type** letter by letter, or **None**) |
-| Beta builds | Off (installed app only, see [Beta builds](#beta-builds)) |
+Click **Settings** to open the Settings page. A change applies as soon as you click it.
 
-The installed app also shows its version and **Check for updates**. The last row, **License**, shows Cockpit's license and the licenses of the open-source software it includes. **Cockpit → About Cockpit** shows the version and the copyright.
+| Section | Setting | Default |
+|---|---|---|
+| Sessions | Jump into session on create | Off |
+| Sessions | Resume when opening an Ended session | On |
+| Sessions | Warn about uncommitted changes on archive | On |
+| Sessions | Default model | Opus |
+| Appearance | Theme | Slate (Ledger is a darker alternative) |
+| Appearance | Repo order | Alphabetical (**Manual** keeps the order you drag repo rows into on the Board) |
+| Chat | Chat UI (**Beta**) | Off (on after an update if you already used the chat: new sessions opened in Chat, or a session was in Chat). Turns on the chat view, see [Chat view](#chat-view) |
+| Chat | New sessions open in | Terminal (**Chat** opens new sessions in the chat view) |
+| Chat | Chat text | Fade (how new chat text appears: **Fade** line by line, **Type** letter by letter, or **None**) |
+| System | Keep Mac awake while sessions work | Off (only while plugged in) |
+| Updates | Beta builds | Off (installed app only, see [Beta builds](#beta-builds)) |
+
+**New sessions open in** and **Chat text** are greyed out while **Chat UI** is off. **Updates** shows only in the installed app, with its version and **Check for updates**. **About** has **License**, which shows Cockpit's license and the licenses of the open-source software it includes. **Cockpit → About Cockpit** shows the version and the copyright.
 
 ---
 
@@ -349,7 +356,7 @@ The installed app also shows its version and **Check for updates**. The last row
 - If sessions are running, Cockpit asks before it restarts, because restarting ends them. Resume them afterwards from the board.
 - If a download or install fails, Cockpit tries again later, less and less often: after 6 hours, then 12, 24 and 48 hours, then every 4 days.
 
-Settings shows the installed version and has **Check for updates** to check right away.
+Settings shows the installed version and has **Check for updates** to check right away. If the check or the download fails, Settings says so. Click **Details** to see why. For a failed check, it names the update feed that failed and how: for example `HTTP 504 Gateway Timeout` when GitHub is having trouble, or a DNS or connection error when you're offline. Cockpit also writes this to its log.
 
 > [!NOTE]
 > If your Mac would ask for an administrator password to replace Cockpit (it sits in a folder you can't write to), Cockpit never installs on its own. The sidebar shows **Update to vX.Y.Z** and Settings shows **Install update** instead. Click either one and enter your password when macOS asks.
