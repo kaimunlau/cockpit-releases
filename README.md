@@ -105,8 +105,8 @@ Each session has its own card, also when several share a worktree. The worktree'
 - **Base branch** starts on the branch you last used in that repo, else on its default branch. The list has the local branches, then the branches only `origin` has.
 - Each session gets its own worktree in `<repo parent>/.cockpit-worktrees/`, branched from a fresh `origin/<base>`.
 - To add a session to a worktree that is already open, pick **Existing branch** and its branch. The form says which worktree it joins, and **Create session** becomes **Add to …**.
-- The chips in the prompt box set the session's permission mode (Auto by default), model and effort. The model starts on **Default model** from Settings. Effort **Default** (the sliders icon) leaves it to your Claude Code settings. Sessions never use `--dangerously-skip-permissions`.
-- Claude can propose a session through Cockpit's `new_session` tool. It opens this form prefilled; nothing starts until you click **Create session**.
+- The chips in the prompt box set the session's permission mode (Auto by default), model and effort. The model starts on **Default model** from Settings. Effort **Default** (the sliders icon) leaves it to your Claude Code settings. The **Code Mode** switch starts the session in Code Mode (see [Code Mode](#code-mode)). Sessions never use `--dangerously-skip-permissions`.
+- Claude can propose a session through Cockpit's `new_session` tool. It opens this form prefilled; nothing starts until you click **Create session**. Claude says only "Session draft sent." about it and carries on; ask it about the draft when you want the details.
 
 ![Adding a session to an open worktree](docs/screenshots/add-to-worktree.png)
 
@@ -130,7 +130,7 @@ Repos have notes too: click the pencil next to the repo name in the sidebar.
 
 Start another Claude Code session on the same branch and files: a fresh context for the next step, or a side question that stays out of the main conversation.
 
-- Click **+** at the end of the tabs, or press <kbd>⌘</kbd> <kbd>T</kbd>. The new session starts at once, with the open session's mode, model and effort.
+- Click **+** at the end of the tabs, or press <kbd>⌘</kbd> <kbd>T</kbd>. The new session starts at once, with the open session's mode, model, effort and Code Mode switch.
 - A new session is called **Session 2**, **Session 3** and so on until its first prompt names it.
 - Tabs show while a worktree has two sessions or more. Click a tab, or press <kbd>⌃</kbd> <kbd>Tab</kbd> and <kbd>⌃</kbd> <kbd>⇧</kbd> <kbd>Tab</kbd>, to switch.
 - When the tabs don't fit, **⋯** lists the rest and shows the most urgent state among them.
@@ -160,6 +160,7 @@ Turn on **Chat UI** in Settings. Then click the chat icon in the session header 
 
 - Your prompts sit on the right, with their images. Claude's replies are formatted text, with their images. An image file shows only if it is inside the session's worktree. An image on GitHub shows too; one from any other site stays a link. An image that can't load shows as its text, a link when it has a web address.
 - Each tool call is one line with its command or file and a ✓ or ✕. Click it to see its input and result. Thinking is a collapsed **Thinking** line.
+- In a Code Mode session, a script Claude runs is a **Script** line showing its first line. Click it to see the script and its result; the tool calls the script made sit under it.
 - Two or more tool calls in a row fold into one steps line, along with any thinking between them. Each tool call counts as a step. While Claude works, the line shows the step Claude is on, such as **◐ Bash cargo test · 3 steps**, and each new step replaces it. Once the run is over, it reads like **6 steps Bash ×5 · Edit ✓**. If any steps failed, it ends in ✕ and how many failed instead, also while Claude works. Click it to see every step.
 - File paths are links: click one to open it in the Files tab, at its line. <kbd>⌘</kbd>-click a **Read**, **Write** or edit line (**Edit**, **MultiEdit**, **NotebookEdit**) to open its file.
 - Every code block has a copy button in its top-right corner: Claude's code, a tool call's input and result, and command output. It shows while the pointer is over the block or the button has keyboard focus. Click it to copy the block's text. It reads **Copied** for 2 seconds, or **Copy failed** if the clipboard refuses.
@@ -236,6 +237,21 @@ The chips at the bottom left of the composer show what the terminal's status lin
 
 > [!NOTE]
 > In Plan mode, Claude Code currently runs Sonnet when Haiku is picked, so the model chip shows Sonnet. The model menu still ticks Haiku and says "Plan mode runs Sonnet" under it, in the composer and in the New session form. In other modes Haiku runs without an effort level, and the effort menu says so.
+
+### Code Mode
+
+![Code Mode switched on in the New session form](docs/screenshots/code-mode.png)
+
+Code Mode is an experimental Claude Code feature from Anthropic: Claude writes short scripts that call its tools, instead of calling them one at a time. Anthropic's [Code Mode page](https://code.claude.com/docs/en/code-mode) has the details and what it needs (Claude Code 2.1.323 or later, a Claude subscription or Console account, a recent model). When those are missing, Claude Code starts without it and says why.
+
+- Turn on **Code Mode** in the New session form. It starts from **Code Mode by default** in Settings, off unless you change it. While it is on, the form says the feature is Anthropic's and links its docs.
+- Code Mode applies to a new conversation. In the composer, the switch works until you send the first prompt, and again after `/clear`. Flipping it restarts Claude.
+- Once the conversation has started, the switch shows whether it runs in Code Mode and no longer flips. Hover it to see why. Mode, model and effort changes keep the conversation in the mode it started in.
+- The first time, Claude Code asks in the terminal before it turns Code Mode on. In the chat, the session stays **Starting** with **Open in terminal** until you answer. If you say no, or Claude Code starts without Code Mode (a requirement above is missing), Cockpit turns the session's switch off, so it isn't asked again.
+- Cockpit's switch wins over `CLAUDE_CODE_EXPERIMENTAL_CODE_MODE` in your shell profile: Cockpit sets it for each session. A `0` in your Claude Code settings still keeps Code Mode off.
+
+> [!NOTE]
+> A Code Mode session reopens only in Cockpit versions with Code Mode. Claude Code won't resume a Code Mode conversation without it, so an older Cockpit ends that session at once.
 
 ### Reply to a selection
 
@@ -382,6 +398,7 @@ Click **Settings** to open the Settings page. A change applies as soon as you cl
 | Sessions | Jump into session on create | Off |
 | Sessions | Resume when opening an Ended session | On |
 | Sessions | Warn about uncommitted changes on archive | On |
+| Sessions | Code Mode by default | Off (see [Code Mode](#code-mode)) |
 | Sessions | Default model | Opus |
 | Appearance | Theme | Slate (Ledger is a darker alternative) |
 | Appearance | Repo order | Alphabetical (**Manual** keeps the order you drag repo rows into on the Board) |
@@ -435,7 +452,7 @@ Settings shows the installed version and has **Check for updates** to check righ
 > If your Mac would ask for an administrator password to replace Cockpit (it sits in a folder you can't write to), Cockpit never installs on its own. The sidebar shows **Update to vX.Y.Z** and Settings shows **Install update** instead. Click either one and enter your password when macOS asks.
 
 > [!NOTE]
-> The app holds no GitHub token. It reads the public feed at `https://github.com/kaimunlau/cockpit-releases/releases/latest/download/latest.json` and verifies each update's signature before installing it.
+> The app holds no GitHub token. It reads the public feeds at `https://update.cccockpit.com/release/latest.json` and `https://github.com/kaimunlau/cockpit-releases/releases/latest/download/latest.json`, takes the newer version either one offers, and verifies each update's signature before installing it.
 
 ### Beta builds
 
